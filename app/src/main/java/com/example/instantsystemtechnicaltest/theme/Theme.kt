@@ -1,4 +1,4 @@
-package com.example.instantsystemtechnicaltest.ui.theme
+package com.example.instantsystemtechnicaltest.theme
 
 import android.app.Activity
 import android.os.Build
