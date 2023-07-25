@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">InstantSystemTechnicalTest</string>
+    <string name="api_response_unknown_error">An unknown error occurred</string>
 </resources>
