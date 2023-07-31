@@ -1,5 +1,6 @@
 package com.example.instantsystemtechnicaltest.utils
 
+
 sealed class Resource<T>(
     val data: T?,
     val message: String?,

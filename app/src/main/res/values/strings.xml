@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">InstantSystemTechnicalTest</string>
+    <string name="app_name">NewsApp</string>
+    <string name="news_list">News List</string>
+    <string name="news_detail">News Detail</string>
+    <string name="news_button_link">Link to the news</string>
     <string name="api_response_unknown_error">An unknown error occurred</string>
 </resources>

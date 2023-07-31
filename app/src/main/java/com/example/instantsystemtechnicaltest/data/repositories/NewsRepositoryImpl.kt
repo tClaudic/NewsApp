@@ -11,10 +11,10 @@ import javax.inject.Inject
 class NewsRepositoryImpl @Inject constructor(
     private val newsApi: NewsApi
 ) : NewsRepository {
-    override suspend fun getNewsData(country: String): Resource<List<Article>?> {
+    override suspend fun getNewsData(country: String): Resource<List<Article?>?> {
         return try {
             Resource.Success(
-                data = newsApi.getNews(country).data?.articles
+                data = newsApi.getNews(country).articles
             )
         } catch (e: Exception){
             e.printStackTrace()
