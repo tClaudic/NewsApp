@@ -4,4 +4,6 @@
     <string name="news_detail">News Detail</string>
     <string name="news_button_link">Link to the news</string>
     <string name="api_response_unknown_error">An unknown error occurred</string>
+    <string name="news_picture_content_description">news picture</string>
+    <string name="launch_button_icon_content_description">Launch Button icon</string>
 </resources>
