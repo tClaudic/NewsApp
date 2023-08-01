@@ -2,7 +2,7 @@
 
 
 
-News app is an android application that allow users to read top headline news in their devide language.
+News app is an android application that allow users to read top headline news in their device language.
 
 <br>
 <br>
