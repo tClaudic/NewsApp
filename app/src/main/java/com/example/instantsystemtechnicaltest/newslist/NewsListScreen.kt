@@ -1,7 +1,6 @@
 package com.example.instantsystemtechnicaltest.newslist
 
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,9 +15,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.example.instantsystemtechnicaltest.Constants
+import com.example.instantsystemtechnicaltest.R
 import com.example.instantsystemtechnicaltest.data.model.Article
 
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -46,13 +48,12 @@ fun NewsList(newsList :List<Article?>, onClick: (Article) -> Unit) {
                             style = MaterialTheme.typography.headlineSmall,
                             modifier = Modifier.padding(15.dp)
                         )
-                        Log.e("TestURL", it.urlToImage.toString())
                         GlideImage(
                             model = it.urlToImage,
-                            contentDescription = "news picture",
+                            contentDescription = stringResource(R.string.news_picture_content_description),
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            it.error("https://cdn.pixabay.com/photo/2016/02/01/00/56/news-1172463_1280.jpg")
+                            it.error(Constants.ERROR_GLIDE_URL)
                         }
                     }
                 }

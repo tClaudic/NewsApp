@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.example.instantsystemtechnicaltest.Constants
 import com.example.instantsystemtechnicaltest.R
 import com.example.instantsystemtechnicaltest.data.model.Article
 
@@ -64,9 +65,9 @@ fun ArticleScreen(article: Article?, onNewsLinkButtonClicked: (String) -> Unit) 
                         .padding(top = 20.dp)
                         .clip(RoundedCornerShape(16.dp)),
                     model = article.urlToImage,
-                    contentDescription = "article picture"
+                    contentDescription = stringResource(id = R.string.news_picture_content_description)
                 ) {
-                    it.error("https://cdn.pixabay.com/photo/2016/02/01/00/56/news-1172463_1280.jpg")
+                    it.error(Constants.ERROR_GLIDE_URL)
                 }
                 article.content?.let {
                     Text(
@@ -109,7 +110,7 @@ fun ArticleScreen(article: Article?, onNewsLinkButtonClicked: (String) -> Unit) 
                     Icon(
                         modifier = Modifier.size(ButtonDefaults.IconSize),
                         painter = painterResource(id = R.drawable.ic_launch_web_view),
-                        contentDescription = "Launch Button icon"
+                        contentDescription = stringResource(R.string.launch_button_icon_content_description)
                     )
                     Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                     Text(text = stringResource(id = R.string.news_button_link))
