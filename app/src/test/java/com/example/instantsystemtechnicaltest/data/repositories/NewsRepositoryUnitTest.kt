@@ -15,10 +15,11 @@ import org.junit.Test
 
 class NewsRepositoryUnitTest {
 
-    lateinit var newsRepository: NewsRepository
+    private lateinit var newsRepository: NewsRepository
     private val mockNewsApi = mockk<NewsApi>(relaxed = true)
-    private val mockNewsResult = mockk<Resource<NewsResult>>()
-    private val mockArticle = mockk<Article>()
+    private val mockNewsResourceResult = mockk<Resource<NewsResult>>()
+    private val mockNewsResult = mockk<NewsResult>()
+    private val mockArticle = mockk<List<Article>>()
 
 
     @Before
@@ -28,9 +29,10 @@ class NewsRepositoryUnitTest {
 
     @Test
     fun getNews_whenSuccess_shouldReturn_SuccessResponse()= runBlocking{
-        val expectedResult = listOf(mockArticle)
+        val expectedResult = mockArticle
         coEvery { mockNewsApi.getNews(any()) } returns mockNewsResult
-        every { mockNewsResult.data?.articles} returns  expectedResult
+        every { mockNewsResult.articles } returns mockArticle
+        every { mockNewsResourceResult.data?.articles} returns  expectedResult
         val result = newsRepository.getNewsData("")
         assertTrue(result is Resource.Success)
         assertEquals(expectedResult,result.data)

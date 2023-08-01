@@ -1,6 +1,5 @@
 package com.example.instantsystemtechnicaltest.newslist
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.instantsystemtechnicaltest.data.model.Article
@@ -18,11 +17,10 @@ import javax.inject.Inject
 class NewsListViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
-    var deviceLanguage: String = Locale.getDefault().language
+    private var deviceLanguage: String = Locale.getDefault().language
     private val _newsList = MutableStateFlow<List<Article?>>(listOf())
     val newsList: StateFlow<List<Article?>> = _newsList.asStateFlow()
-    private val _isLoading = MutableStateFlow(false)
-    var isLoading = _isLoading.asStateFlow()
+
     private val _errorMessage = MutableStateFlow("")
     var errorMessage = _errorMessage.asStateFlow()
     private val _selectedArticle = MutableStateFlow<Article?>(null)
@@ -30,20 +28,18 @@ class NewsListViewModel @Inject constructor(
     var selectedArticle = _selectedArticle.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            _isLoading.value = true
-            val result = newsRepository.getNewsData(deviceLanguage)
-            when (result) {
-                is Resource.Success -> {
-                    Log.e("vmtest", result.data?.get(0)?.source?.id.toString())
-                    _newsList.value = result.data ?: listOf()
-                    _isLoading.value = false
-                }
+       getNewsList()
+    }
 
+    fun getNewsList(){
+        viewModelScope.launch {
+
+            when (val result = newsRepository.getNewsData(deviceLanguage)) {
+                is Resource.Success -> {
+                    _newsList.value = result.data ?: listOf()
+                }
                 is Resource.Error -> {
-                    _errorMessage.value = result.message ?: ""
-                    Log.e("error", errorMessage.toString())
-                    _isLoading.value = false
+                    _errorMessage.value = result.message ?: "An unknown error occurred"
                 }
             }
         }
